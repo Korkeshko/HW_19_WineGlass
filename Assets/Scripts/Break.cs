@@ -7,6 +7,7 @@ public class Break : MonoBehaviour
     [SerializeField] GameObject brokenGlass;
 
     BoxCollider boxCollider;
+    Rigidbody rb;
     
     private void Awake()
     {
@@ -14,6 +15,7 @@ public class Break : MonoBehaviour
         brokenGlass.SetActive(false);
 
         boxCollider = GetComponent<BoxCollider>();
+        rb = GetComponent<Rigidbody>();
     }
 
     private void OnMouseDown()
@@ -28,6 +30,7 @@ public class Break : MonoBehaviour
 
     public void BreakGlass()
     {
+        rb.isKinematic = true;
         boxCollider.enabled = false;
         fullGlass.SetActive(false);
         brokenGlass.SetActive(true);
